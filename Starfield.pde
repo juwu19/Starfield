@@ -1,26 +1,45 @@
-//your code here
-void setup()
-{
-	//your code here
+NormalParticle [] bob;
+void setup(){
+  noStroke();
+  size(700,700);
+  background(255);
+  bob = new NormalParticle[1000];
+  for(int i = 0; i < bob.length; i++){
+   bob[i] = new NormalParticle();
+  }
 }
-void draw()
-{
-	//your code here
+void draw(){
+  for(int i = 0; i < bob.length; i++){
+  bob[i].show();
+  bob[i].move();
+  }
 }
-class NormalParticle
-{
-	//your code here
+class NormalParticle{
+  double myX, myY, mySpeed, myAngle;
+  int myColor;
+  NormalParticle(){
+    myColor = color((int)(Math.random()*255) + 1,(int)(Math.random()*255) + 1,(int)(Math.random()*255) + 1);
+    mySpeed = (double)(Math.random()*11);
+    myAngle = (double)(Math.random()*2)*Math.PI;
+    myX = 350;
+    myY = 350;
+  }
+  void move(){
+    myX = myX + (Math.cos(myAngle)*mySpeed);
+    myY = myY + (Math.sin(myAngle)*mySpeed);
+  }
+  void show(){
+    fill(myColor);
+    ellipse((float)myX,(float)myY,8,8);
+  }
 }
-interface Particle
-{
-	//your code here
+interface Particle{
+  public void show();
+  public void move();
 }
-class OddballParticle //uses an interface
-{
-	//your code here
-}
-class JumboParticle //uses inheritance
-{
-	//your code here
-}
+class OddballParticle{
 
+}
+class JumboParticle{
+
+}
